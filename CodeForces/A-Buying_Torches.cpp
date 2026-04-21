@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+
+int main(){
+    int t; cin >> t;
+    while ( t-- ) {
+        ll x,y,k; cin >> x >> y >> k;
+        ll c = y * k;
+        ll req_sticks = c + k - 1;
+        ll offers = k + (req_sticks /(x-1)  +  (req_sticks % (x-1) ? 1: 0));
+        cout << offers << '\n';
+        
+    }
+    return 0;
+}

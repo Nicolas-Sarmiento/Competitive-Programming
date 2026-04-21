@@ -9,23 +9,29 @@ int main()
     while ( t-- ) {
         int n; cin >> n;
         vector<int> s (n);
-        for ( int i : s ) cin >> i;
+        for ( int &i : s ) cin >> i;
         
         vector<int> ans (n);
-        if ( s[0] >= n ) {
-            cout << -1 << '\n';
-            continue;
-        }
-        ans[0] = n;
-        bool can = true;
-        for ( int i = 1; i < n; i++ ) {
-            if ( s[i] > i  ) { can = false; break; }
-            
-            ans[i] = i;
-            
-        }
+        bool sol = true;
         
-        if ( !can ) cout << -1;
+        int l = 0;
+        while ( l < n ) {
+            int r = l;
+            
+            while ( r+1 < n && s[r+1] == s[l] ) r++;
+            
+            if ( l == r ) { sol = false; break; }
+            
+            for ( int i = l; i < r; i++ ) {
+                ans[i] = i+2;
+            }
+            ans[r] = l + 1;
+            
+            l = r+1;
+            
+        }
+         
+        if ( !sol ) cout << -1;
         else for ( int i : ans ) cout << i << ' ';
         cout << '\n';
         
